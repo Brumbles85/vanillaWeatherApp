@@ -1,0 +1,57 @@
+body {
+  max-width: 750px;
+  max-height: 600px;
+  min-width: fit-content;
+  padding: 15px;
+}
+
+.container {
+  outline: solid;
+  padding: 0 auto;
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+}
+
+.search {
+  padding-top: 15px;
+  float: right;
+}
+#search-form {
+  float: right;
+}
+
+.cityInfo {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: block;
+  margin: 0 auto;
+}
+
+.cityHeading {
+  font-size: 50px;
+  font-weight: bold;
+  margin-left: 30px;
+}
+.date {
+  margin-left: 30px;
+}
+ul {
+  list-style-type: none;
+}
+
+.date #currentImage {
+  margin: auto;
+}
+
+#currentTemp {
+  margin: auto;
+}
+.bigTemp {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.forecast {
+  display: block;
+  margin: auto;
+  padding-bottom: 15px;
+}
