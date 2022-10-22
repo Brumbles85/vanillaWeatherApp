@@ -37,6 +37,9 @@ body {
 ul {
   list-style-type: none;
 }
+li:first-letter {
+  text-transform: capitalize;
+}
 
 .date #currentImage {
   margin: auto;
