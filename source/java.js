@@ -27,30 +27,29 @@ h2.innerHTML = `${day} ${time}`;
 
 //JS for searchbar and city display
 function searchDisplay(response) {
-  console.log(response.data);
-  let h1 = document.querySelector("h1");
-  let cityName = response.data.name;
-  h1.innerHTML = cityName;
-
-  let h3 = document.querySelector("h3");
-  let cityTemperature = Math.round(response.data.main.temp);
-  h3.innerHTML = `${cityTemperature}°F`;
-
+  let h1 = document.querySelector(".cityHeading");
+  let h3 = document.querySelector(".bigTemp");
   let wind = document.querySelector(".windSpeed");
-  let windSpeed = response.data.wind.speed;
-  wind.innerHTML = `${windSpeed} mph`;
+  let tempHighLow = document.querySelector(".highLow");
+  let description = document.querySelector(".weatherDescription");
+  let iconElement = document.querySelector("#icon");
 
-  let high = document.querySelector(".high");
-  let highTemp = response.data.main.temp_max;
-  high.innerHTML = `High Temp: ${highTemp}°F`;
+  let cityName = response.data.name;
+  let cityTemperature = Math.round(response.data.main.temp);
+  let windSpeed = Math.round(response.data.wind.speed);
+  let high = Math.round(response.data.main.temp_max);
+  let low = Math.round(response.data.main.temp_min);
+  let descriptionInfo = response.data.weather[0].description;
 
-  let low = document.querySelector(".low");
-  let lowTemp = response.data.main.temp_min;
-  low.innerHTML = `Low Temp: ${lowTemp}°F`;
-
-  let feels = document.querySelector(".feels");
-  let feelsLike = Math.round(response.data.main.feels_like);
-  feels.innerHTML = `It feels about ${feelsLike} °F right now`;
+  h1.innerHTML = cityName;
+  h3.innerHTML = `${cityTemperature}°F`;
+  wind.innerHTML = `Wind Speed: ${windSpeed} mph`;
+  tempHighLow.innerHTML = `High°/Low°(F): ${high}°/${low}°`;
+  description.innerHTML = descriptionInfo;
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 function search(event) {
@@ -72,27 +71,31 @@ form.addEventListener("submit", search);
 //Current Location Button and display
 
 function showLocationInfo(response) {
-  let h1 = document.querySelector("h1");
-  let city = response.data.name;
-  h1.innerHTML = city;
+  console.log(response.data);
+  let h1 = document.querySelector(".cityHeading");
+  let h3 = document.querySelector(".bigTemp");
+  let wind = document.querySelector(".windSpeed");
+  let tempHighLow = document.querySelector(".highLow");
+  let description = document.querySelector(".weatherDescription");
+  let iconElement = document.querySelector("#icon");
 
-  let h3 = document.querySelector("h3");
-  let temperature = Math.round(response.data.main.temp);
-  h3.innerHTML = `${temperature}­°F`;
+  let cityName = response.data.name;
+  let cityTemperature = Math.round(response.data.main.temp);
+  let windSpeed = Math.round(response.data.wind.speed);
+  let high = Math.round(response.data.main.temp_max);
+  let low = Math.round(response.data.main.temp_min);
+  let descriptionInfo = response.data.weather[0].description;
 
-  let high = document.querySelector("#high");
-  let highTemp = response.data.main.temp_max;
-  high.innerHTML = `High Temp: ${highTemp} °F`;
-
-  let low = document.querySelector("#low");
-  let lowTemp = response.data.main.temp_min;
-  low.innerHTML = `Low Temp: ${lowTemp} °F`;
-
-  let feels = document.querySelector("#feels");
-  let feelsLike = Math.round(response.data.main.feels_like);
-  feels.innerHTML = `It feels about ${feelsLike} °F right now`;
+  h1.innerHTML = cityName;
+  h3.innerHTML = `${cityTemperature}°F`;
+  wind.innerHTML = `Wind Speed: ${windSpeed} mph`;
+  tempHighLow.innerHTML = `High°/Low°(F): ${high}°/${low}°`;
+  description.innerHTML = descriptionInfo;
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
-
 function retrievePosition(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;

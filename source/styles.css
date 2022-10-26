@@ -1,7 +1,8 @@
 body {
   max-width: 750px;
   max-height: 600px;
-  min-width: fit-content;
+  min-height: 582px;
+  min-width: 780px;
   padding: 15px;
 }
 
