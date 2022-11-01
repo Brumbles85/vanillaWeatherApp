@@ -46,17 +46,16 @@
           <h2 class="date">Day & Time</h2>
           <ul class="weatherData">
             <li class="windSpeed">Wind speed</li>
-            <li class="highLow">High°/Low°</li>
             <li class="weatherDescription">Weather Description</li>
           </ul>
         </div>
         <div class="col-3 bigWeather">
-            <img src="☀️" alt="clear" id="icon"  >
+            <img src="http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png" alt="clear" id="icon"  >
             
         </div>
 
         <div  id="currentTemp"class="col-3">
-          <h3 class="bigTemp">75°</h3>
+          <h3 class="showTemp"><span class="bigTemp">75° </span> <span class="units"><a href="#" id= "fahrenheit-link" class="active">F</a>  | <a href="#" id="celcius-link" >C</a></span></h3>
         </div>
       </div>
       <div class="container-fluid">

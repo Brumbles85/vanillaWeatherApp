@@ -38,6 +38,7 @@ body {
 ul {
   list-style-type: none;
 }
+
 li:first-letter {
   text-transform: capitalize;
 }
@@ -49,13 +50,29 @@ li:first-letter {
 #currentTemp {
   margin: auto;
 }
+
 .bigTemp {
-  font-size: 60px;
+  font-size: 40px;
   font-weight: bold;
+}
+
+.bigWeather {
+  margin: auto;
 }
 
 .forecast {
   display: block;
   margin: auto;
   padding-bottom: 15px;
+}
+.units {
+  font-size: 20px;
+}
+.showTemp .active {
+  color: black;
+  cursor: default;
+  text-decoration: none;
+}
+.showTemp .active:hover {
+  text-decoration: none;
 }

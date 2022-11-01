@@ -30,22 +30,15 @@ function searchDisplay(response) {
   let h1 = document.querySelector(".cityHeading");
   let h3 = document.querySelector(".bigTemp");
   let wind = document.querySelector(".windSpeed");
-  let tempHighLow = document.querySelector(".highLow");
   let description = document.querySelector(".weatherDescription");
   let iconElement = document.querySelector("#icon");
 
-  let cityName = response.data.name;
-  let cityTemperature = Math.round(response.data.main.temp);
-  let windSpeed = Math.round(response.data.wind.speed);
-  let high = Math.round(response.data.main.temp_max);
-  let low = Math.round(response.data.main.temp_min);
-  let descriptionInfo = response.data.weather[0].description;
+  fahrenheitTemperature = response.data.main.temp;
 
-  h1.innerHTML = cityName;
-  h3.innerHTML = `${cityTemperature}°F`;
-  wind.innerHTML = `Wind Speed: ${windSpeed} mph`;
-  tempHighLow.innerHTML = `High°/Low°(F): ${high}°/${low}°`;
-  description.innerHTML = descriptionInfo;
+  h1.innerHTML = response.data.name;
+  h3.innerHTML = `${Math.round(fahrenheitTemperature)}°F`;
+  wind.innerHTML = `Wind Speed: ${Math.round(response.data.wind.speed)} mph`;
+  description.innerHTML = response.data.weather[0].description;
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -75,22 +68,15 @@ function showLocationInfo(response) {
   let h1 = document.querySelector(".cityHeading");
   let h3 = document.querySelector(".bigTemp");
   let wind = document.querySelector(".windSpeed");
-  let tempHighLow = document.querySelector(".highLow");
   let description = document.querySelector(".weatherDescription");
   let iconElement = document.querySelector("#icon");
 
-  let cityName = response.data.name;
-  let cityTemperature = Math.round(response.data.main.temp);
-  let windSpeed = Math.round(response.data.wind.speed);
-  let high = Math.round(response.data.main.temp_max);
-  let low = Math.round(response.data.main.temp_min);
-  let descriptionInfo = response.data.weather[0].description;
+  fahrenheitTemperature = response.data.main.temp;
 
-  h1.innerHTML = cityName;
-  h3.innerHTML = `${cityTemperature}°F`;
-  wind.innerHTML = `Wind Speed: ${windSpeed} mph`;
-  tempHighLow.innerHTML = `High°/Low°(F): ${high}°/${low}°`;
-  description.innerHTML = descriptionInfo;
+  h1.innerHTML = response.data.name;
+  h3.innerHTML = `${Math.round(fahrenheitTemperature)}°F`;
+  wind.innerHTML = `Wind Speed: ${Math.round(response.data.wind.speed)} mph`;
+  description.innerHTML = response.data.weather[0].description;
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -106,11 +92,37 @@ function retrievePosition(position) {
 
   axios.get(apiUrl).then(showLocationInfo);
 }
+
 function getLocation(event) {
   event.preventDefault();
-
   navigator.geolocation.getCurrentPosition(retrievePosition);
 }
+function showCelciusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector(".bigTemp");
+
+  fahrenheitLink.classList.remove("active");
+  celciusLink.classList.add("active");
+
+  let celciusTemperature = ((fahrenheitTemperature - 32) * 5) / 9;
+  temperatureElement.innerHTML = `${Math.round(celciusTemperature)}°C`;
+}
+function showFahrenheitTemperature(event) {
+  let temperatureElement = document.querySelector(".bigTemp");
+
+  fahrenheitLink.classList.add("active");
+  celciusLink.classList.remove("active");
+
+  temperatureElement.innerHTML = `${Math.round(fahrenheitTemperature)}°F`;
+}
+
+let fahrenheitTemperature = null;
 
 let btn = document.querySelector("#locationButton");
 btn.addEventListener("click", getLocation);
+
+let celciusLink = document.querySelector("#celcius-link");
+celciusLink.addEventListener("click", showCelciusTemperature);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
