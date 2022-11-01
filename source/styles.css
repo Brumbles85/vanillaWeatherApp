@@ -58,6 +58,7 @@ li:first-letter {
 
 .bigWeather {
   margin: auto;
+  padding-top: 40px;
 }
 
 .forecast {
