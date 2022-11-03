@@ -61,11 +61,6 @@ li:first-letter {
   padding-top: 40px;
 }
 
-.forecast {
-  display: block;
-  margin: auto;
-  padding-bottom: 15px;
-}
 .units {
   font-size: 20px;
 }
@@ -76,4 +71,18 @@ li:first-letter {
 }
 .showTemp .active:hover {
   text-decoration: none;
+}
+.forecast {
+  display: block;
+  margin: auto;
+  padding-bottom: 15px;
+  color: black;
+  text-align: center;
+}
+.weather-forecast-date {
+  font-size: 16px;
+}
+
+.weather-forecast-temperatures {
+  font-size: 13px;
 }

@@ -25,6 +25,32 @@ let days = [
 let day = days[today.getDay()];
 h2.innerHTML = `${day} ${time}`;
 
+//JS for forecast
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thursday", "Friday", "Saturday"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-sm-2">
+        <div class="forecast">
+            <div class="weather-forecast-date">${day}</div>
+            <img src="http://openweathermap.org/img/wn/02n@2x.png" alt="clear sky day" width="36"
+            />
+            <div class="weather-forecast-temperatures">
+            <span class="forecast-max" >63°</span> | <span class="forecast-min" >49°</span>
+            </div>
+        </div>
+    </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 //JS for searchbar and city display
 function searchDisplay(response) {
   let h1 = document.querySelector(".cityHeading");
@@ -126,3 +152,5 @@ celciusLink.addEventListener("click", showCelciusTemperature);
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
+
+displayForecast();
