@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="`utf-8`">
+    <meta charset="`utf-8`" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="source/styles.css" />
+    <link rel="stylesheet" href="source/fake.css" />
 
     <link
       rel="stylesheet"
@@ -22,23 +22,23 @@
   <body>
     <div class="container">
       <div class="row">
-          <div class="search">
-            <form id="search-form">
-              <input
-                type="text"
-                placeholder="Search for your city.."
-                autocomplete="off"
-                autofocus="on"
-                id="search-text-input"
-              />
-              <button input type="submit" value="Search" title="Search">
-                <i class="fa fa-search"></i>
-              </button>
-              <button id="locationButton" type="submit" title="Current Location">
-                Current Location
-              </button>
-            </form>
-          </div>
+        <div class="search">
+          <form id="search-form">
+            <input
+              type="text"
+              placeholder="Search for your city.."
+              autocomplete="off"
+              autofocus="on"
+              id="search-text-input"
+            />
+            <button input type="submit" value="search" title="Search">
+              <i class="fa fa-search"></i>
+            </button>
+            <button id="locationButton" type="submit" title="Current Location">
+              Current Location
+            </button>
+          </form>
+        </div>
       </div>
       <div class="row cityInfo">
         <div class="col-6">
@@ -49,18 +49,37 @@
             <li class="weatherDescription">Weather Description</li>
           </ul>
         </div>
-        <div class="col-3 bigWeather">
-            <img src="" alt="clear" id="icon"  >
-            
+        <div class="col-3" id="bigWeather">
+          <img
+            src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+            alt="clear"
+            id="icon"
+          />
         </div>
 
-        <div  id="currentTemp"class="col-3">
-          <h3 class="showTemp"><span class="bigTemp">75° </span> <span class="units"><a href="#" id= "fahrenheit-link" class="active">F</a>  | <a href="#" id="celcius-link" >C</a></span></h3>
+        <div id="currentTemp" class="col-3">
+          <h3 class="showTemp">
+            <span class="bigTemp">65°</span>
+            <span class="units"
+              ><a href="#" id="fahrenheit-link" class="active">F</a> |
+              <a href="#" id="celcius-link">C</a></span
+            >
+          </h3>
         </div>
-      <div class="container-fluid"  id="forecast"></div>
-      <footer>This project was coded by Amanda Lehman. It is <a href="https://github.com/Brumbles85/vanillaWeatherApp.git">open-sourced on GitHub</a> and <a href="https://profound-ganache-20ad3a.netlify.app">hosted on Netlify</a>. </footer>
+        <div class="container-fluid" id="forecast"></div>
+      </div>
+      <footer>
+        This project was coded by Amanda Lehman. It is
+        <a href="https://github.com/Brumbles85/vanillaWeatherApp.git"
+          >open-sourced on GitHub</a
+        >
+        and
+        <a href="https://profound-ganache-20ad3a.netlify.app"
+          >hosted on Netlify</a
+        >.
+      </footer>
     </div>
-    
-    <script type="text/javascript" src="source/java.js"></script>
+
+    <script src="source/fake.js"></script>
   </body>
 </html>
