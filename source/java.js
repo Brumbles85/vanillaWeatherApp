@@ -1,29 +1,30 @@
 //JS for time and day
 
-let today = new Date();
-let h2 = document.querySelector("h2");
-let hours = today.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
-}
-let minutes = today.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
+function getDateTime(timestamp) {
+  let today = new Date(timestamp);
+  let hours = today.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = today.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
 
-let time = `${hours}:${minutes}`;
+  let time = `${hours}:${minutes}`;
 
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[today.getDay()];
-h2.innerHTML = `${day} ${time}`;
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[today.getDay()];
+  return `${day} ${time}`;
+}
 //Formatting for forecast
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
@@ -78,6 +79,7 @@ function searchDisplay(response) {
   let wind = document.querySelector(".windSpeed");
   let description = document.querySelector(".weatherDescription");
   let iconElement = document.querySelector("#icon");
+  let dateElement = document.querySelector(".date");
 
   fahrenheitTemperature = response.data.main.temp;
 
@@ -85,27 +87,32 @@ function searchDisplay(response) {
   h3.innerHTML = `${Math.round(fahrenheitTemperature)}°F`;
   wind.innerHTML = `Wind Speed: ${Math.round(response.data.wind.speed)} mph`;
   description.innerHTML = response.data.weather[0].description;
+  dateElement.innerHTML = getDateTime(response.data.dt * 1000);
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  console.log(response);
+
+  getForecast(response.data.coord);
 }
 
-function search(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#search-text-input");
-  let searchCity = searchInput.value;
-
-  let units = "imperial";
+function search(city) {
   let apiKey = "cb286bad3607984b41ed10c8de5cf00e";
-  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
-  let apiUrl = `${apiEndpoint}?q=${searchCity}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
   axios.get(apiUrl).then(searchDisplay);
 }
-
 let form = document.querySelector("#search-form");
-form.addEventListener("submit", search);
+form.addEventListener("submit", handleSubmit);
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-text-input").value;
+  search(searchInput);
+}
 
 //Forecast API
 function getForecast(coordinates) {
@@ -116,7 +123,6 @@ function getForecast(coordinates) {
 }
 
 //Current Location Button and display
-
 function showLocationInfo(response) {
   console.log(response.data);
   let h1 = document.querySelector(".cityHeading");
@@ -124,6 +130,7 @@ function showLocationInfo(response) {
   let wind = document.querySelector(".windSpeed");
   let description = document.querySelector(".weatherDescription");
   let iconElement = document.querySelector("#icon");
+  let dateElement = document.querySelector(".date");
 
   fahrenheitTemperature = response.data.main.temp;
 
@@ -131,6 +138,7 @@ function showLocationInfo(response) {
   h3.innerHTML = `${Math.round(fahrenheitTemperature)}°F`;
   wind.innerHTML = `Wind Speed: ${Math.round(response.data.wind.speed)} mph`;
   description.innerHTML = response.data.weather[0].description;
+  dateElement.innerHTML = getDateTime(response.data.dt * 1000);
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -160,6 +168,7 @@ function showCelciusTemperature(event) {
   celciusLink.classList.add("active");
 
   let celciusTemperature = ((fahrenheitTemperature - 32) * 5) / 9;
+  event.preventDefault();
   temperatureElement.innerHTML = `${Math.round(celciusTemperature)}°C`;
 }
 function showFahrenheitTemperature(event) {
@@ -182,4 +191,4 @@ celciusLink.addEventListener("click", showCelciusTemperature);
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
 
-displayForecast();
+search("Portland");
