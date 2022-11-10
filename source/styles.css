@@ -5,21 +5,22 @@ body {
   min-width: 780px;
   padding: 15px;
 }
-
 .container {
   outline: solid;
   padding: 0 auto;
   background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  border-radius: 10px;
 }
 
 .search {
   padding-top: 15px;
-  float: right;
 }
 #search-form {
   float: right;
 }
-
+button {
+  border-radius: 5px;
+}
 .cityInfo {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -56,33 +57,7 @@ li:first-letter {
   font-weight: bold;
 }
 
-.bigWeather {
+#bigWeather {
   margin: auto;
   padding-top: 40px;
-}
-
-.units {
-  font-size: 20px;
-}
-.showTemp .active {
-  color: black;
-  cursor: default;
-  text-decoration: none;
-}
-.showTemp .active:hover {
-  text-decoration: none;
-}
-.forecast {
-  display: block;
-  margin: auto;
-  padding-bottom: 15px;
-  color: black;
-  text-align: center;
-}
-.weather-forecast-date {
-  font-size: 16px;
-}
-
-.weather-forecast-temperatures {
-  font-size: 13px;
 }
